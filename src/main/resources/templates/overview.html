@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h1>ToDo Tool</h1>
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Create new item
+        </div>
+        <div class="panel-body">
+            <form action="/create">
+                <span class="label label-default">Title</span>
+                <div class="panel-body">
+                    <input type="text" name="title" value="Title">
+                </div>
+
+                <span class="label label-default">Description</span>
+                <div class="panel-body">
+                    <input type="text" name="description" value="Description">
+                </div>
+
+                <input type="submit" value="Create" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default" th:each="item : ${items}">
+        <div class="panel-heading" th:text="${item.title}">
+            Title
+        </div>
+        <div class="panel-body" th:text="${item.description}">
+            Description
+        </div>
+        <div class="panel-body">
+            <form action="/done">
+                <input type="hidden" name="id" th:value="${item.id}">
+                <input type="submit" value="Done" class="btn btn-danger">
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
